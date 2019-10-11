@@ -13,9 +13,12 @@ import_files = glob.glob('data/*.xlsx')
 
 geo_features = ['DEP', 'DIR', 'COM', 'REC', 'Q02','SIREPCI','Q03', 'OPTEPCI',
                 'FORJEPCI', 'LIBDEP', 'LIBREG', 'IDCOM', 'LIBCOM']
+file_count = 0
 
 # Loop on impot's file
 for file_path in import_files:
+    #Increase file count 
+    file_count = file_count+1
     # Check file's year
     file_year = file_path.split('_')[1][0:4]    # 2013
     small_year = file_year[2:]                  # 13
@@ -51,7 +54,7 @@ for file_path in import_files:
     merge_feature = merge_feature + ['IDCOM']
     
     # If first file (2013)
-    if file_year == '2013':
+    if file_count == 1:
         df = df_temp
         del df_temp
     # Not the first file, we merge DataFrame
